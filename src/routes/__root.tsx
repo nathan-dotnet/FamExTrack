@@ -18,9 +18,7 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
 
-        <h2 className="mt-4 text-xl font-semibold text-foreground">
-          Page not found
-        </h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
 
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
@@ -39,22 +37,16 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({
-  error,
-  reset,
-}: {
-  error: Error;
-  reset: () => void;
-}) {
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
 
   const router = useRouter();
 
-useEffect(() => {
-  reportError(error, {
-    boundary: "tanstack_root_error_component",
-  });
-}, [error]);
+  useEffect(() => {
+    reportError(error, {
+      boundary: "tanstack_root_error_component",
+    });
+  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -64,8 +56,7 @@ useEffect(() => {
         </h1>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back
-          home.
+          Something went wrong on our end. You can try refreshing or head back home.
         </p>
 
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -91,48 +82,47 @@ useEffect(() => {
   );
 }
 
-export const Route =
-  createRootRouteWithContext<{ queryClient: QueryClient }>()({
-    head: () => ({
-      meta: [
-        { charSet: "utf-8" },
-        {
-          name: "viewport",
-          content: "width=device-width, initial-scale=1",
-        },
-        { title: "FamExTrack" },
-        {
-          name: "description",
-          content: "Family Expense Tracking System",
-        },
-        { name: "author", content: "Nathaniel Lucero" },
-        { property: "og:title", content: "FamExTrack" },
-        {
-          property: "og:description",
-          content: "Family Expense Tracking System",
-        },
-        { property: "og:type", content: "website" },
-        { name: "twitter:card", content: "summary_large_image" },
-      ],
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1",
+      },
+      { title: "FamExTrack" },
+      {
+        name: "description",
+        content: "Family Expense Tracking System",
+      },
+      { name: "author", content: "Nathaniel Lucero" },
+      { property: "og:title", content: "FamExTrack" },
+      {
+        property: "og:description",
+        content: "Family Expense Tracking System",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
 
-      links: [
-        {
-          rel: "stylesheet",
-          href: appCss,
-        },
-        {
-          rel: "icon",
-          href: "/favicon.ico",
-          type: "image/x-icon",
-        },
-      ],
-    }),
+    links: [
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
+      {
+        rel: "icon",
+        href: "/favicon.ico",
+        type: "image/x-icon",
+      },
+    ],
+  }),
 
-    shellComponent: RootShell,
-    component: RootComponent,
-    notFoundComponent: NotFoundComponent,
-    errorComponent: ErrorComponent,
-  });
+  shellComponent: RootShell,
+  component: RootComponent,
+  notFoundComponent: NotFoundComponent,
+  errorComponent: ErrorComponent,
+});
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
