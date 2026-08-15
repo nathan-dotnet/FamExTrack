@@ -5,21 +5,21 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { Button } from "@/components/ui/button";
 import type { AccountInfo } from "@/lib/account.functions";
 import {
-    COUNTED_EXPENSE_STATUSES,
-    EXPENSE_STATUS_META,
-    PENDING_EXPENSE_STATUSES,
-    PLAN_STATUS_META,
-    usageTone,
+  COUNTED_EXPENSE_STATUSES,
+  EXPENSE_STATUS_META,
+  PENDING_EXPENSE_STATUSES,
+  PLAN_STATUS_META,
+  usageTone,
 } from "@/lib/domain";
 import { dateLabel, money, monthKey, monthLabel, round2, toNumber } from "@/lib/format";
 import {
-    buildRollup,
-    categoriesQuery,
-    expensesQuery,
-    plansQuery,
-    requestsQuery,
-    sonsQuery,
-    transfersQuery,
+  buildRollup,
+  categoriesQuery,
+  expensesQuery,
+  plansQuery,
+  requestsQuery,
+  sonsQuery,
+  transfersQuery,
 } from "@/lib/queries";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -194,7 +194,9 @@ function ParentDashboard({ month, account }: { month: string; account: AccountIn
       <section className="space-y-3">
         <h2 className="font-display text-base font-semibold">Needs a decision</h2>
         <div className="card-surface divide-y">
-          {pendingExpenses.length === 0 && pendingPlans.length === 0 && pendingRequests.length === 0 ? (
+          {pendingExpenses.length === 0 &&
+          pendingPlans.length === 0 &&
+          pendingRequests.length === 0 ? (
             <p className="p-6 text-sm text-muted-foreground">Nothing is waiting for approval.</p>
           ) : null}
 
@@ -205,9 +207,7 @@ function ParentDashboard({ month, account }: { month: string; account: AccountIn
               className="flex items-center justify-between gap-3 p-4 hover:bg-muted/60"
             >
               <div>
-                <p className="text-sm font-medium">
-                  Budget plan · {plan.son?.full_name ?? "Son"}
-                </p>
+                <p className="text-sm font-medium">Budget plan · {plan.son?.full_name ?? "Son"}</p>
                 <p className="text-xs text-muted-foreground">
                   {monthLabel(plan.month)} · {plan.items?.length ?? 0} items
                 </p>
@@ -322,7 +322,12 @@ function SonDashboard({ month, account }: { month: string; account: AccountInfo 
         ) : (
           <div className="mt-2 divide-y">
             {rollup.map((row) => (
-              <BudgetBar key={row.categoryId} label={row.name} spent={row.spent} budget={row.budget} />
+              <BudgetBar
+                key={row.categoryId}
+                label={row.name}
+                spent={row.spent}
+                budget={row.budget}
+              />
             ))}
           </div>
         )}

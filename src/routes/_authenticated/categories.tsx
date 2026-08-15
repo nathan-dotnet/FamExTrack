@@ -13,7 +13,10 @@ export const Route = createFileRoute("/_authenticated/categories")({
   head: () => ({
     meta: [
       { title: "Categories — Family Ledger" },
-      { name: "description", content: "Manage the spending categories used across budgets and expenses." },
+      {
+        name: "description",
+        content: "Manage the spending categories used across budgets and expenses.",
+      },
       { property: "og:title", content: "Categories — Family Ledger" },
       { property: "og:description", content: "Manage spending categories." },
       { property: "og:type", content: "website" },
@@ -73,7 +76,10 @@ function Categories() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <Button disabled={name.trim().length < 2 || create.isPending} onClick={() => create.mutate()}>
+        <Button
+          disabled={name.trim().length < 2 || create.isPending}
+          onClick={() => create.mutate()}
+        >
           Add
         </Button>
       </div>

@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
@@ -79,7 +79,11 @@ function Requests({ account }: { account: AccountInfo }) {
   });
 
   const decide = useMutation({
-    mutationFn: async (vars: { id: string; status: "approved" | "partially_approved" | "rejected"; amount: number }) => {
+    mutationFn: async (vars: {
+      id: string;
+      status: "approved" | "partially_approved" | "rejected";
+      amount: number;
+    }) => {
       const { error } = await supabase
         .from("additional_money_requests")
         .update({ status: vars.status, approved_amount: vars.amount })
@@ -138,7 +142,10 @@ function Requests({ account }: { account: AccountInfo }) {
           <div>
             <Button
               disabled={
-                !categoryId || toNumber(amount) <= 0 || reason.trim().length < 10 || create.isPending
+                !categoryId ||
+                toNumber(amount) <= 0 ||
+                reason.trim().length < 10 ||
+                create.isPending
               }
               onClick={() => create.mutate()}
             >
@@ -198,7 +205,9 @@ function Requests({ account }: { account: AccountInfo }) {
                       size="sm"
                       variant="outline"
                       disabled={decide.isPending}
-                      onClick={() => decide.mutate({ id: request.id, status: "rejected", amount: 0 })}
+                      onClick={() =>
+                        decide.mutate({ id: request.id, status: "rejected", amount: 0 })
+                      }
                     >
                       Reject
                     </Button>

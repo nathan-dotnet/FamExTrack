@@ -42,7 +42,11 @@ function PlanReview() {
   const [amounts, setAmounts] = useState<Record<string, string>>({});
 
   const decideItem = useMutation({
-    mutationFn: async (vars: { itemId: string; status: "approved" | "reduced" | "rejected"; amount: number }) => {
+    mutationFn: async (vars: {
+      itemId: string;
+      status: "approved" | "reduced" | "rejected";
+      amount: number;
+    }) => {
       const { error } = await supabase
         .from("budget_items")
         .update({ status: vars.status, approved_amount: vars.amount })
@@ -54,7 +58,10 @@ function PlanReview() {
   });
 
   const finishPlan = useMutation({
-    mutationFn: async (vars: { planId: string; status: "approved" | "partially_approved" | "rejected" }) => {
+    mutationFn: async (vars: {
+      planId: string;
+      status: "approved" | "partially_approved" | "rejected";
+    }) => {
       const { error } = await supabase
         .from("budget_plans")
         .update({ status: vars.status, reviewed_at: new Date().toISOString() })
@@ -93,8 +100,7 @@ function PlanReview() {
                 {(plan.items ?? []).map((item) => {
                   const key = item.id;
                   const value =
-                    amounts[key] ??
-                    String(item.approved_amount ?? item.requested_amount);
+                    amounts[key] ?? String(item.approved_amount ?? item.requested_amount);
                   return (
                     <div key={key} className="flex flex-wrap items-center gap-3 py-3">
                       <div className="min-w-0 flex-1">

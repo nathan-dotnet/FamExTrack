@@ -7,13 +7,13 @@ import type { AccountInfo } from "@/lib/account.functions";
 import { usageTone } from "@/lib/domain";
 import { money, monthKey, monthLabel, round2, toNumber } from "@/lib/format";
 import {
-    buildRollup,
-    categoriesQuery,
-    expensesQuery,
-    plansQuery,
-    requestsQuery,
-    sonsQuery,
-    transfersQuery,
+  buildRollup,
+  categoriesQuery,
+  expensesQuery,
+  plansQuery,
+  requestsQuery,
+  sonsQuery,
+  transfersQuery,
 } from "@/lib/queries";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
@@ -94,7 +94,12 @@ function SonLedger({ account }: { account: AccountInfo }) {
         ) : (
           <div className="mt-2 divide-y">
             {rollup.map((row) => (
-              <BudgetBar key={row.categoryId} label={row.name} spent={row.spent} budget={row.budget} />
+              <BudgetBar
+                key={row.categoryId}
+                label={row.name}
+                spent={row.spent}
+                budget={row.budget}
+              />
             ))}
           </div>
         )}

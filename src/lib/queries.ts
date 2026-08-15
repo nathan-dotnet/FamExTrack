@@ -159,7 +159,9 @@ export function auditQuery(subjectId?: string) {
   });
 }
 
-export type PlanRow = Awaited<ReturnType<NonNullable<ReturnType<typeof plansQuery>["queryFn"]>>>[number];
+export type PlanRow = Awaited<
+  ReturnType<NonNullable<ReturnType<typeof plansQuery>["queryFn"]>>
+>[number];
 export type ExpenseRow = Awaited<
   ReturnType<NonNullable<ReturnType<typeof expensesQuery>["queryFn"]>>
 >[number];

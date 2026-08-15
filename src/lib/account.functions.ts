@@ -31,7 +31,7 @@ export const ensureAccount = createServerFn({ method: "POST" })
     const fullName =
       typeof metadata["full_name"] === "string" && metadata["full_name"].trim().length > 0
         ? (metadata["full_name"] as string).trim()
-        : email.split("@")[0] ?? "Member";
+        : (email.split("@")[0] ?? "Member");
 
     const { data: existingProfile } = await supabaseAdmin
       .from("profiles")

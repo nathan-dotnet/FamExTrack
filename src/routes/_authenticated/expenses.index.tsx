@@ -3,11 +3,11 @@ import { PageFrame } from "@/components/PageFrame";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import type { AccountInfo } from "@/lib/account.functions";
 import { COUNTED_EXPENSE_STATUSES, EXPENSE_STATUS_META, type ExpenseStatus } from "@/lib/domain";
@@ -24,7 +24,8 @@ export const Route = createFileRoute("/_authenticated/expenses/")({
       { title: "Expenses — Family Ledger" },
       {
         name: "description",
-        content: "Search, filter and review every logged expense with receipts and approval status.",
+        content:
+          "Search, filter and review every logged expense with receipts and approval status.",
       },
       { property: "og:title", content: "Expenses — Family Ledger" },
       { property: "og:description", content: "Every logged expense with receipts and status." },

@@ -10,7 +10,10 @@ export const Route = createFileRoute("/_authenticated/notifications")({
   head: () => ({
     meta: [
       { title: "Notifications — Family Ledger" },
-      { name: "description", content: "Approvals, rejections and overspending alerts in one place." },
+      {
+        name: "description",
+        content: "Approvals, rejections and overspending alerts in one place.",
+      },
       { property: "og:title", content: "Notifications — Family Ledger" },
       { property: "og:description", content: "Approvals, rejections and alerts." },
       { property: "og:type", content: "website" },
@@ -30,7 +33,10 @@ function List() {
 
   const markAll = useMutation({
     mutationFn: async () => {
-      const { error } = await supabase.from("notifications").update({ is_read: true }).eq("is_read", false);
+      const { error } = await supabase
+        .from("notifications")
+        .update({ is_read: true })
+        .eq("is_read", false);
       if (error) throw new Error(error.message);
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["notifications"] }),
@@ -42,7 +48,12 @@ function List() {
   return (
     <div className="space-y-3">
       {unread > 0 ? (
-        <Button variant="outline" size="sm" onClick={() => markAll.mutate()} disabled={markAll.isPending}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => markAll.mutate()}
+          disabled={markAll.isPending}
+        >
           Mark all as read ({unread})
         </Button>
       ) : null}

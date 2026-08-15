@@ -4,18 +4,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import type { AccountInfo } from "@/lib/account.functions";
 import { MAX_RECEIPT_BYTES, RECEIPT_MIME_TYPES } from "@/lib/domain";
 import { money, monthKey, monthLabel, todayISO, toNumber } from "@/lib/format";
-import { buildRollup, categoriesQuery, expensesQuery, plansQuery, requestsQuery } from "@/lib/queries";
+import {
+  buildRollup,
+  categoriesQuery,
+  expensesQuery,
+  plansQuery,
+  requestsQuery,
+} from "@/lib/queries";
 import { uploadReceipt } from "@/lib/receipts.functions";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
@@ -251,7 +257,9 @@ function NewExpenseForm({ account }: { account: AccountInfo }) {
               onChange={(event) => {
                 const picked = event.target.files?.[0] ?? null;
                 if (!picked) return;
-                if (!RECEIPT_MIME_TYPES.includes(picked.type as (typeof RECEIPT_MIME_TYPES)[number])) {
+                if (
+                  !RECEIPT_MIME_TYPES.includes(picked.type as (typeof RECEIPT_MIME_TYPES)[number])
+                ) {
                   toast.error("Use a JPG, PNG, WEBP image or a PDF.");
                   return;
                 }
@@ -301,7 +309,11 @@ function NewExpenseForm({ account }: { account: AccountInfo }) {
 
         <div className="flex gap-2">
           <Button type="submit" disabled={mutation.isPending}>
-            {mutation.isPending ? <Loader2 className="size-4 animate-spin" /> : <Upload className="size-4" />}
+            {mutation.isPending ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <Upload className="size-4" />
+            )}
             Submit expense
           </Button>
           <Button type="button" variant="ghost" onClick={() => navigate({ to: "/expenses" })}>

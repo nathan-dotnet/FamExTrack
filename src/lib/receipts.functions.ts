@@ -6,7 +6,10 @@ import { MAX_RECEIPT_BYTES, RECEIPT_MIME_TYPES } from "./domain";
 const uploadSchema = z.object({
   filename: z.string().trim().min(1).max(200),
   mime: z.enum(RECEIPT_MIME_TYPES),
-  base64: z.string().min(16).max(Math.ceil((MAX_RECEIPT_BYTES * 4) / 3) + 1024),
+  base64: z
+    .string()
+    .min(16)
+    .max(Math.ceil((MAX_RECEIPT_BYTES * 4) / 3) + 1024),
 });
 
 export type UploadedReceipt = {

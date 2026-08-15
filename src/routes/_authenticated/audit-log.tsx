@@ -8,7 +8,10 @@ export const Route = createFileRoute("/_authenticated/audit-log")({
   head: () => ({
     meta: [
       { title: "Audit log — Family Ledger" },
-      { name: "description", content: "Every submission, approval and change with who did it and when." },
+      {
+        name: "description",
+        content: "Every submission, approval and change with who did it and when.",
+      },
       { property: "og:title", content: "Audit log — Family Ledger" },
       { property: "og:description", content: "Full history of submissions and approvals." },
       { property: "og:type", content: "website" },

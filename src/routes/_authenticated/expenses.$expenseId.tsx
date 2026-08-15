@@ -32,9 +32,7 @@ export const Route = createFileRoute("/_authenticated/expenses/$expenseId")({
 });
 
 function ExpenseDetailPage() {
-  return (
-    <PageFrame title="Expense detail">{(account) => <Detail account={account} />}</PageFrame>
-  );
+  return <PageFrame title="Expense detail">{(account) => <Detail account={account} />}</PageFrame>;
 }
 
 function Detail({ account }: { account: AccountInfo }) {
@@ -49,7 +47,8 @@ function Detail({ account }: { account: AccountInfo }) {
       const row = expense.data;
       if (!row) throw new Error("Expense not found.");
       const isException =
-        row.status === "pending_exception" || row.status === "exception_approved" ||
+        row.status === "pending_exception" ||
+        row.status === "exception_approved" ||
         row.status === "exception_rejected";
       const status = isException
         ? approve
@@ -104,8 +103,7 @@ function Detail({ account }: { account: AccountInfo }) {
             <p className="money font-display text-2xl font-semibold">{money(row.amount)}</p>
             <p className="text-sm font-medium">{row.description}</p>
             <p className="text-xs text-muted-foreground">
-              {row.category?.name} · {dateLabel(row.expense_date)} ·{" "}
-              {row.son?.full_name ?? "Son"}
+              {row.category?.name} · {dateLabel(row.expense_date)} · {row.son?.full_name ?? "Son"}
             </p>
           </div>
           <StatusBadge {...meta} />

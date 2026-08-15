@@ -7,20 +7,20 @@ import { cn } from "@/lib/utils";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import {
-    BarChart3,
-    Bell,
-    ClipboardList,
-    FolderCog,
-    Home,
-    LogOut,
-    Menu,
-    PlusCircle,
-    Receipt,
-    ScrollText,
-    Send,
-    UserCircle,
-    Users,
-    Wallet,
+  BarChart3,
+  Bell,
+  ClipboardList,
+  FolderCog,
+  Home,
+  LogOut,
+  Menu,
+  PlusCircle,
+  Receipt,
+  ScrollText,
+  Send,
+  UserCircle,
+  Users,
+  Wallet,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
@@ -82,7 +82,8 @@ export function AppShell({
   const NavList = () => (
     <nav className="space-y-0.5">
       {nav.map((item) => {
-        const active = pathname === item.to || (item.to !== "/dashboard" && pathname.startsWith(`${item.to}/`));
+        const active =
+          pathname === item.to || (item.to !== "/dashboard" && pathname.startsWith(`${item.to}/`));
         return (
           <Link
             key={item.to}
@@ -138,7 +139,12 @@ export function AppShell({
               <SheetContent side="left" className="w-72 p-4">
                 <SheetTitle className="px-2 pb-4 font-display">Family Ledger</SheetTitle>
                 <NavList />
-                <Button variant="ghost" size="sm" className="mt-4 w-full justify-start" onClick={signOut}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="mt-4 w-full justify-start"
+                  onClick={signOut}
+                >
                   <LogOut className="size-4" /> Sign out
                 </Button>
               </SheetContent>
@@ -146,7 +152,9 @@ export function AppShell({
 
             <div className="min-w-0 flex-1">
               <h1 className="truncate text-lg font-semibold">{title}</h1>
-              {subtitle ? <p className="truncate text-xs text-muted-foreground">{subtitle}</p> : null}
+              {subtitle ? (
+                <p className="truncate text-xs text-muted-foreground">{subtitle}</p>
+              ) : null}
             </div>
             <div className="flex items-center gap-2">{actions}</div>
           </div>
